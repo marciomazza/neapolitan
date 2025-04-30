@@ -57,6 +57,18 @@ Versioning and Status
 Neapolitan uses a two-part CalVer versioning scheme, such as ``23.7``. The first
 number is the year. The second is the release number within that year.
 
+On an on-going basis, Neapolitan aims to support all current Django
+versions and the matching current Python versions.
+
+Please see:
+
+* `Status of supported Python versions <https://devguide.python.org/versions/#supported-versions>`_
+* `List of supported Django versions <https://www.djangoproject.com/download/#supported-versions>`_
+
+Support for Python and Django versions will be dropped when they reach
+end-of-life. Support for Python versions will be dropped when they reach
+end-of-life, even when still supported by a current version of Django.
+
 This is alpha software. I'm still working out the details of the API, and I've
 only begun the docs.
 
