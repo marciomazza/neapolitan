@@ -13,6 +13,18 @@ Version numbers correspond to git tags. Please use the compare view on GitHub
 for full details. Until we're further along, I will just note the highlights
 here:
 
+25.1
+====
+
+* Updated CI testing for latest Django and Python versions.
+
+* Fixed an issue in ``get_success_url()`` when using ``lookup_field``.
+
+* *Note*: Updated the ``object_list`` template tag to provide each field as a
+  dictionary with ``name`` and ``value`` keys. The
+  ``neapolitan/partial/list.html`` template is updated accordingly, but if you
+  have already overridden that you will need to adjust.
+
 24.8
 ====
 
