@@ -372,8 +372,9 @@ class CRUDView(View):
 
     def get_context_data(self, **kwargs):
         kwargs["view"] = self
-        kwargs["object_verbose_name"] = self.model._meta.verbose_name
-        kwargs["object_verbose_name_plural"] = self.model._meta.verbose_name_plural
+        if self.model is not None:
+            kwargs["object_verbose_name"] = self.model._meta.verbose_name
+            kwargs["object_verbose_name_plural"] = self.model._meta.verbose_name_plural
         kwargs["create_view_url"] = Role.CREATE.maybe_reverse(self)
 
         if getattr(self, "object", None) is not None:

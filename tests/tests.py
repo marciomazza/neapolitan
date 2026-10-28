@@ -45,11 +45,19 @@ class BookmarkTagView(CRUDView):
     fields = ["bookmark", "tag"]
 
 
+class BookmarkQuerysetOnlyView(CRUDView):
+    queryset = Bookmark.objects.filter(favourite=True)
+    fields = ["url", "title", "note"]
+    url_base = "favourites"
+    template_name = "neapolitan/object_list.html"
+
+
 urlpatterns = [
     *BookmarkView.get_urls(),
     *NamedCollectionView.get_urls(),
     *BookmarkListOnlyView.get_urls(),
     *BookmarkTagView.get_urls(),
+    *BookmarkQuerysetOnlyView.get_urls(roles={Role.LIST}),
 ]
 
 
@@ -161,6 +169,12 @@ class BasicTests(TestCase):
         self.assertContains(response, self.homepage.title)
         self.assertNotContains(response, self.github.title)
         self.assertNotContains(response, self.fosstodon.title)
+
+    def test_list_without_model(self):
+        response = self.client.get("/favourites/")
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.homepage.title)
+        self.assertNotContains(response, self.github.title)
 
     def test_custom_mount_url(self):
         """Test view URL base"""
